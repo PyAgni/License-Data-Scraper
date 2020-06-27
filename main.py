@@ -54,4 +54,4 @@ else:
   if response:
     with open('driver_data.json', 'w') as output:
       json.dump(response, output, indent=1)
-      print("\nDriver Details Successfully stored in driver_data.json\n")
+      print("\nAll details successfully stored in driver_data.json\n")
