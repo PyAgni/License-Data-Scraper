@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import json
 import re
 import requests
+import sys
 from pprint import pprint
 
 #project level imports
@@ -33,6 +34,15 @@ class getDetails:
 
 		return response_data
 
+	def validate_table(self, table):
+
+		try:
+			check_table = table[3]
+			print("All OK, Generating data")
+		except IndexError:
+			print("Invalid license number or DOB. Please check and try again\n")
+			sys.exit()
+
 	
 	def scrape(self):
 
@@ -58,6 +68,8 @@ class getDetails:
 		response_data = self.post_data(data, cookies)
 
 		table_list = response_data.find_all('table')
+
+		self.validate_table(table_list)
 
 		json_data = get_table_data(table_list).get_json()
 
