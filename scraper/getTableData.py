@@ -12,11 +12,6 @@ class get_table_data:
     def __init__(self, table):
         
         self.table = table
-        self.table1 = table[0].find_all('td')
-        self.table2 = table[1].find_all('td')
-        self.table3 = table[2].find_all('td')
-        self.table4 = table[3].find_all('th')
-        self.table5 = table[3].find_all('td')
     
     def get_driver_details(self, list1):
         
@@ -61,6 +56,13 @@ class get_table_data:
     def get_json(self):
         
         json = dict()
+
+        self.table1 = self.table[0].find_all('td')
+        self.table2 = self.table[1].find_all('td')
+        self.table3 = self.table[2].find_all('td')
+        self.table4 = self.table[3].find_all('th')
+        self.table5 = self.table[3].find_all('td')
+
         json['Driver Details'] = self.get_driver_details(self.table1)
         json['Validity'] = self.get_validity(self.table2, self.table3)
         json['Class Of Vehicle'] = self.get_class(self.table4, self.table5)
